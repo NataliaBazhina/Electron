@@ -3,7 +3,7 @@ from django.core.exceptions import ValidationError
 
 def validate_all(instance):
     """
-    Комплексная валидация всех правил для объекта ElectronicsNetwork
+    Комплексная валидация для объекта ElectronicsNetwork
     """
     is_factory = instance.type == 0
 
@@ -16,6 +16,11 @@ def validate_all(instance):
             if instance.supplier.pk is None:
                 instance.supplier.save()
             real_level = instance.supplier.level + 1
+
+    if real_level > 2:
+        raise ValidationError(
+            {"supplier": "Максимальная глубина иерархии в сети - 3 уровня"}
+        )
 
     if is_factory and instance.supplier is not None:
         raise ValidationError({"supplier": "Завод не может иметь поставщика"})

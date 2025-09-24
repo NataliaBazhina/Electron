@@ -34,7 +34,7 @@ Django Filter для фильтрации
                         Установка и запуск
 1. Клонирование репозитория
 
-git clone <ссылка-на-репозиторий>
+ git clone git@github.com:NataliaBazhina/Electron.git
 
 cd electron
 
